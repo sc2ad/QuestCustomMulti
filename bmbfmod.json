@@ -1,0 +1,27 @@
+{
+  "id": "QuestCustomMultiplayer",
+  "name": "Quest Custom Multiplayer",
+  "version": "0.1.0",
+  "author": "Sc2ad",
+  "description": [],
+  "category": "Gameplay",
+  "gameVersion": "1.12.2",
+  "platform": "Quest",
+  "components": [
+    {
+      "type": "HookMod",
+      "installAction": {
+        "installLibraryFile": "libQuestCustomMultiplayer_0_1_0.so"
+      },
+      "uninstallAction": {
+        "removeLibraryFile": "libQuestCustomMultiplayer_0_1_0.so"
+      }
+    },
+    {
+      "type": "HookModLibrary",
+      "installAction": {
+        "installLibraryFile": "libbeatsaber-hook_0_7_8.so"
+      }
+    }
+  ]
+}

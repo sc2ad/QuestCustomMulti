@@ -1,0 +1,25 @@
+{
+  "configurations": [
+    {
+      "defines": [
+        "MOD_ID=\"PracticePlus\"",
+        "VERSION=\"0.3.0\"",
+        "__GNUC__",
+        "__aarch64__",
+        "ID=\"PracticePlus\""
+      ],
+      "includePath": [
+        "${workspaceFolder}/**",
+        "c:/android-ndk-r21d/**",
+        "${workspaceFolder}/shared",
+        "${workspaceFolder}/extern",
+        "${workspaceFolder}/extern/libil2cpp/il2cpp/libil2cpp"
+      ],
+      "name": "Quest",
+      "cStandard": "c11",
+      "cppStandard": "c++20",
+      "intelliSenseMode": "clang-x64"
+    }
+  ],
+  "version": 4
+}
