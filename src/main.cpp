@@ -38,5 +38,5 @@ MAKE_HOOK_OFFSETLESS(BaseClientMessageHandler_VerifySignature, Il2CppObject*, Il
 extern "C" void load() {
     logger().debug("Installing hooks!");
     INSTALL_HOOK_OFFSETLESS(NetworkConfigSO_get_masterServerEndPoint, il2cpp_utils::FindMethod("", "NetworkConfigSO", "get_masterServerEndPoint"));
-    INSTALL_HOOK_OFFSETLESS(BaseClientMessageHandler_VerifySignature, il2cpp_utils::FindMethodUnsafe("", "BaseClientMessageHandler", "VerifySignature", 5));
+    INSTALL_HOOK_OFFSETLESS(BaseClientMessageHandler_VerifySignature, il2cpp_utils::FindMethodUnsafe("MasterServer", "BaseClientMessageHandler", "VerifySignature", 5));
 }
