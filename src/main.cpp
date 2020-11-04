@@ -108,17 +108,11 @@ MAKE_HOOK_OFFSETLESS(OculusPlatformUserModel_GetUserAuthToken, System::Threading
     return OculusPlatformUserModel_GetUserAuthToken(self);
 }
 
-MAKE_HOOK_OFFSETLESS(ErrorCode, Il2CppString*, int reason) {
-    // haha xd
-    CRASH_UNLESS(false);
-}
-
 extern "C" void load() {
     logger().debug("Installing hooks!");
     INSTALL_HOOK_OFFSETLESS(MultiplayerUnavailableReasonMethods_TryGetMultiplayerUnavailableReason, il2cpp_utils::FindMethodUnsafe("", "MultiplayerUnavailableReasonMethods", "TryGetMultiplayerUnavailableReason", 2));
     INSTALL_HOOK_OFFSETLESS(NetworkConfigSO_get_masterServerEndPoint, il2cpp_utils::FindMethod("", "NetworkConfigSO", "get_masterServerEndPoint"));
     INSTALL_HOOK_OFFSETLESS(BaseClientMessageHandler_VerifySignature, il2cpp_utils::FindMethodUnsafe("MasterServer", "BaseClientMessageHandler", "VerifySignature", 5));
     INSTALL_HOOK_OFFSETLESS(PlatformAuthenticationTokenProvider_GetAuthenticationToken, il2cpp_utils::FindMethod("", "PlatformAuthenticationTokenProvider", "GetAuthenticationToken"));
-    INSTALL_HOOK_OFFSETLESS(ErrorCode, il2cpp_utils::FindMethodUnsafe("", "ConnectionFailedReasonMethods", "ErrorCode", 1));
     INSTALL_HOOK_OFFSETLESS(OculusPlatformUserModel_GetUserAuthToken, il2cpp_utils::FindMethod("", "OculusPlatformUserModel", "GetUserAuthToken"));
 }
