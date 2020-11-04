@@ -85,12 +85,27 @@ GlobalNamespace::AuthenticationToken continueFunc(System::Threading::Tasks::Task
 
 MAKE_HOOK_OFFSETLESS(PlatformAuthenticationTokenProvider_GetAuthenticationToken, System::Threading::Tasks::Task_1<GlobalNamespace::AuthenticationToken>*, Il2CppObject* self) {
     // First call orig
-    logger().debug("Calling original GetAuthenticationToken!");
-    auto* orig = PlatformAuthenticationTokenProvider_GetAuthenticationToken(self);
+    logger().debug("Ignoring original GetAuthenticationToken!");
+    // auto* orig = PlatformAuthenticationTokenProvider_GetAuthenticationToken(self);
+
     // If orig has no value, we need to make our own.
-    return orig->ContinueWith<GlobalNamespace::AuthenticationToken>(reinterpret_cast<System::Func_2<
-            System::Threading::Tasks::Task_1<GlobalNamespace::AuthenticationToken>*,
-            GlobalNamespace::AuthenticationToken>*>(il2cpp_utils::MakeFunc(std::function(continueFunc))));
+    auto* arr = Array<uint8_t>::NewLength(1);
+    arr->values[0] = 10;
+    GlobalNamespace::AuthenticationToken token = GlobalNamespace::AuthenticationToken(
+        GlobalNamespace::AuthenticationToken::Platform::OculusQuest,
+        il2cpp_utils::createcsstr("aksudfjhajksdg"),
+        il2cpp_utils::createcsstr("asidkgfhjkafvhdbjam,"),
+        arr
+    );
+    return System::Threading::Tasks::Task_1<GlobalNamespace::AuthenticationToken>::New_ctor(token);
+    // return orig->ContinueWith<GlobalNamespace::AuthenticationToken>(reinterpret_cast<System::Func_2<
+    //         System::Threading::Tasks::Task_1<GlobalNamespace::AuthenticationToken>*,
+    //         GlobalNamespace::AuthenticationToken>*>(il2cpp_utils::MakeFunc(continueFunc)));
+}
+
+MAKE_HOOK_OFFSETLESS(OculusPlatformUserModel_GetUserAuthToken, System::Threading::Tasks::Task_1<Il2CppString*>*, Il2CppObject* self) {
+    logger().debug("Calling original: OculusPlatformUserModel.GetUserAuthToken!");
+    return OculusPlatformUserModel_GetUserAuthToken(self);
 }
 
 MAKE_HOOK_OFFSETLESS(ErrorCode, Il2CppString*, int reason) {
@@ -105,4 +120,5 @@ extern "C" void load() {
     INSTALL_HOOK_OFFSETLESS(BaseClientMessageHandler_VerifySignature, il2cpp_utils::FindMethodUnsafe("MasterServer", "BaseClientMessageHandler", "VerifySignature", 5));
     INSTALL_HOOK_OFFSETLESS(PlatformAuthenticationTokenProvider_GetAuthenticationToken, il2cpp_utils::FindMethod("", "PlatformAuthenticationTokenProvider", "GetAuthenticationToken"));
     INSTALL_HOOK_OFFSETLESS(ErrorCode, il2cpp_utils::FindMethodUnsafe("", "ConnectionFailedReasonMethods", "ErrorCode", 1));
+    INSTALL_HOOK_OFFSETLESS(OculusPlatformUserModel_GetUserAuthToken, il2cpp_utils::FindMethod("", "OculusPlatformUserModel", "GetUserAuthToken"));
 }
